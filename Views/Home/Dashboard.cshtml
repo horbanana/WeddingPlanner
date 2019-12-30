@@ -1,0 +1,63 @@
+
+<h1>Welcome to the Wedding Planner</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Wedding</th>
+      <th scope="col">Date</th>
+      <th scope="col">Guest</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+      @foreach(var plan in ViewBag.AllPlans)
+      {
+      <tr>
+        <th><a href="/About/@plan.PlanId">@plan.WedderOne & @plan.WedderTwo </a></th>
+        <td>@plan.Date</td>
+        <td>@plan.People.Count</td>
+        <td>
+         
+        
+          @if(@plan.Creator.UserId == @ViewBag.User.UserId)
+          {
+            <a href="/Delete/@plan.PlanId">Delete</a>
+          }
+          else
+          {
+            var isIn = false;
+            @foreach (var occasion in @ViewBag.User.Occasions)
+            {
+                
+                @if(plan.PlanId == occasion.PlanId)
+                {
+                  isIn = true;
+
+                }
+                
+            }
+            @if(isIn == true)
+                {
+                   <a href="/UnJoin/@ViewBag.User.UserId/@plan.PlanId">Unjoin</a>
+                }
+            else{
+                <a href="/Join/@ViewBag.User.UserId/@plan.PlanId">Join</a>
+            }
+            
+
+          }
+
+          
+        </td>
+      </tr>
+      }
+
+    
+    
+
+  </tbody>
+</table>
+<a href="NewPlanPage" class="btn btn-success">+ New Wedding</a> <a href="/Logout" class="btn btn-danger" style="float:right;">Log Out</a>

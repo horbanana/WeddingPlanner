@@ -1,0 +1,27 @@
+@model Plan
+<h1 style="margin-top:50px;">Plan Your Wedding</h1>
+<a style="float:right; margin:5px;" href="Dashboard" class="btn btn-warning">Dashboard</a> 
+<a  style="float:right;  margin:5px;" href="Logout" class="btn btn-danger">Log Out</a>
+<form style="margin-top:100px;" action="New" method="post">
+    <div class = "form-group">
+        <label>Wedder One</label>
+        <span asp-validation-for="WedderOne" style="color:red;"></span>
+        <input class="form-control" asp-for="WedderOne">
+    </div>
+    <div class = "form-group">
+        <label>Wedder Two</label>
+        <span asp-validation-for="WedderTwo" style="color:red;"></span>
+        <input class="form-control" asp-for="WedderTwo">
+    </div>
+    <div class = "form-group">
+        <label>Date</label>
+        <span asp-validation-for="Date" style="color:red;"></span>
+        <input type="datetime-local" value="mm-dd-yyyy, hh-mm-ss tt" class="form-control" asp-for="Date">
+    </div>
+    <div class = "form-group">
+        <label>Wedding Address</label>
+        <span asp-validation-for="WeddingAddress" style="color:red;"></span>
+        <input class="form-control" asp-for="WeddingAddress">
+    </div>
+    <input type="submit" value="Create" class="btn btn-secondary">
+</form> 
